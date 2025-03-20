@@ -1,0 +1,32 @@
+services:
+  db:
+    container_name: postgres_container
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: budgetbuddy
+    ports: 
+      - "5432:5432"
+
+  pgadmin:
+    container_name: pgadmin4_container
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "8081:80"
+
+  php:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    container_name: php_container
+    restart: always
+    volumes:
+      - .:/var/www/html
+    ports:
+      - "8000:80"
