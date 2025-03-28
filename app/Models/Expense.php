@@ -8,7 +8,12 @@ class Expense extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'title', 'amount', 'date', 'description'];
+    protected $fillable = ['user_id', 
+        'title', 
+        'amount', 
+        'date', 
+        'description'
+    ];
 
     public function user():BelongsTo
     {
